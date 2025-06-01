@@ -1,9 +1,23 @@
 function Footer() {
-    
+
     return (
-        <div>
-            <h1>Footer</h1>
-        </div>
+        <footer>
+            <ul>
+                <li>
+                    <strong>FOOTER</strong>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#" className="secondary">...</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#" className="secondary">...</a>
+                </li>
+            </ul>
+        </footer>
     )
 }
 
