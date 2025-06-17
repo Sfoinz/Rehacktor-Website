@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import CardGame from "../../components/CardGame";
+import useApiKey from "../../hooks/useApiKey";
 
 
-const apiKey = 'e6781d6f615f4a039493dc977b4f3874';
+/* const apiKey = 'e6781d6f615f4a039493dc977b4f3874'; */
+const apiKey = useApiKey();
+
 function Homepage() {
 
     const [data, setData] = useState(null);
