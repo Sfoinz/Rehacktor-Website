@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import useApiKey from "../hooks/useApiKey";
 
 const GenresDropdown = () => {
     const [genres, setGenres] = useState([]);
     const [error, setError] = useState(null);
     const apiKey = useApiKey();
+    const navigate = useNavigate();
 
     const initialUrl = `https://api.rawg.io/api/genres?key=${apiKey}`;
 
@@ -26,6 +28,13 @@ const GenresDropdown = () => {
         load();
     }, []);
 
+    const handleChange = (e) => {
+        const slug = e.target.value;
+        if (slug) {
+            navigate(`/games/${slug}`);
+        }
+    };
+
     return (
         <div className="w-full max-w-xs mb-4">
             <label htmlFor="genres" className="block text-sm font-medium text-gray-700 mb-1">
@@ -34,6 +43,7 @@ const GenresDropdown = () => {
             <select
                 id="genres"
                 name="genres"
+                onChange={handleChange}
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
             >
                 <option value="">Tutti i generi</option>

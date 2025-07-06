@@ -30,18 +30,20 @@ function Homepage() {
 
     useEffect(() => {
         load();
-        
+
     }, []);
-   
-    
+
+
     return (
         <div>
             <h1>Homepage</h1>
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
                 {error && <article>{error}</article>}
                 {data && data.results.map((game) => (
                     <CardGame key={game.id} game={game}></CardGame>
                 ))}
+
+
             </div>
         </div>
 

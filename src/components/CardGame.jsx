@@ -1,22 +1,22 @@
+import GlassButton from "./buttons/GlassButton";
 import LazyLoadGameImage from "./LazyLoadGameImage";
 
 const CardGame = ({ game }) => {
   return (
     <article
       key={game.id}
-      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-full max-w-sm"
+      className="relative rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 transform hover:scale-[1.03]  hover:-translate-y-[2px] hover:translate-x-[1px] w-full h-80"
     >
       <LazyLoadGameImage image={game.background_image} />
-      <div className="p-4">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2 truncate">
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4 flex flex-col items-center justify-end text-center">
+        <h2 className="text-lg font-semibold text-white mb-1 truncate">
           {game.name}
         </h2>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-gray-200 mb-2">
           Released: {game.released}
         </p>
-        <button className="bg-blue-600 text-white py-2 px-4 rounded-xl w-full hover:bg-blue-700 transition-colors duration-200">
-          Acquista
-        </button>
+        <GlassButton>Acquista</GlassButton>
       </div>
     </article>
   );
