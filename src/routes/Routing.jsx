@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Layout from "../layout/Layout";
-
+import GamePage from "../pages/gamepage";
 
 
 import Homepage from "../pages/homepage";
@@ -15,6 +15,7 @@ function Routing() {
                     <Route path="/" element={<Homepage />} />
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/games/:genre" element={<GenrePage />} />
+                    <Route path="/games/:slug/:id" element={<GamePage />} />
                 </Route>
             </Routes>
  

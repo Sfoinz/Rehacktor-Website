@@ -1,5 +1,6 @@
 import GlassButton from "./buttons/GlassButton";
 import LazyLoadGameImage from "./LazyLoadGameImage";
+import { Link } from 'react-router';
 
 const CardGame = ({ game }) => {
   return (
@@ -16,7 +17,7 @@ const CardGame = ({ game }) => {
         <p className="text-sm text-gray-200 mb-2">
           Released: {game.released}
         </p>
-        <GlassButton>Acquista</GlassButton>
+        <GlassButton><Link to={`/games/${game.slug}/${game.id}`}>Acquista</Link></GlassButton>
       </div>
     </article>
   );
