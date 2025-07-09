@@ -2,8 +2,8 @@ import GenresDropdown from "./GenresDropdown";
 
 export default function Sidebar() {
     return (
-        <aside className="p-4 bg-gray-50 rounded-xl shadow-md w-full max-w-xs">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Filtri</h2>
+        <aside className="hidden lg:block w-64 bg-gray-800 rounded-2xl shadow-xl p-6 mr-6">
+            <h2 className="text-xl font-bold text-white mb-6">Filtri</h2>
             <GenresDropdown />
         </aside>
     );

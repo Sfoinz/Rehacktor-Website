@@ -1,11 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
-import useSupabaseKey from "../hooks/useSupabaseKey";
-import useSupabaseUrl from "../hooks/useSupabaseUrl";
 
+const supabaseUrl = import.meta.env.VITE_RAWG_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_RAWG_SUPABASE_KEY;
 
-const supabaseUrl = useSupabaseUrl();
-const supabasekey = useSupabaseKey();
-
-const supabase = createClient(supabaseUrl, supabasekey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;

@@ -1,11 +1,9 @@
-import { Link } from "react-router";
-
-export default function NavButton({
-    to,
+export default function FormButton({
     children,
     variant = "primary",
     className = "",
     disabled = false,
+    ...props
 }) {
     const baseStyle =
         "px-4 py-2 text-sm font-semibold rounded-xl transition duration-200 ease-in-out shadow";
@@ -22,11 +20,14 @@ export default function NavButton({
     const disabledStyle = "opacity-50 pointer-events-none";
 
     return (
-        <Link
-            to={to}
-            className={`${baseStyle} ${variants[variant]} ${disabled ? disabledStyle : ""} ${className}`}
+        <button
+            type="submit"
+            className={`${baseStyle} ${variants[variant]} ${disabled ? disabledStyle : ""
+                } ${className}`}
+            disabled={disabled}
+            {...props}
         >
             {children}
-        </Link>
+        </button>
     );
 }
