@@ -32,6 +32,8 @@ const GenresDropdown = () => {
         const slug = e.target.value;
         if (slug) {
             navigate(`/games/${slug}`);
+        } else {
+            navigate("/");
         }
     };
 

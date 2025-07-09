@@ -1,37 +1,22 @@
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import CardGame from "../../components/CardGame";
 import useApiKey from "../../hooks/useApiKey";
+import useFetchSolution from "../../hooks/useFetchSolution";
 
 function GenrePage() {
 
     const apiKey = useApiKey();
     const { genre } = useParams();
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-
     const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${genre}&page=1`;
 
-    const load = async () => {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            const json = await response.json();
-            setData(json);
-
-        } catch (error) {
-            setError(error.message);
-            setData(null);
-        }
-    }
-
+    const { data, loading, error, updateUrl } = useFetchSolution(url);
     useEffect(() => {
-        load();
-
-    }, [genre]);
+        if (genre && apiKey) {
+            updateUrl(url);
+        }
+    }, [genre, apiKey]);
 
 
     return (

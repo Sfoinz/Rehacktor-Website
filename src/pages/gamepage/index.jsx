@@ -1,6 +1,7 @@
 import useApiKey from "../../hooks/useApiKey";
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import useFetchSolution from "../../hooks/useFetchSolution";
 
 
 function GamePage() {
@@ -8,30 +9,10 @@ function GamePage() {
     const apiKey = useApiKey();
     const { id } = useParams();
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-
     const url = `https://api.rawg.io/api/games/${id}?key=${apiKey}`;
 
-    const load = async () => {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            const json = await response.json();
-            setData(json);
+    const { data, loading, error, updateUrl } = useFetchSolution(url);
 
-        } catch (error) {
-            setError(error.message);
-            setData(null);
-        }
-    }
-
-    useEffect(() => {
-        load();
-
-    }, [id]);
 
 
     return (
