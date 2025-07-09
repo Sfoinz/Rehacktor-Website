@@ -1,27 +1,13 @@
+import Navbar from "./Navbar";
+
 function Header() {
-    
     return (
-        <nav>
-            <ul>
-                <li><strong>HEADER</strong></li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="#" className="secondary">Services</a>
-                </li>
-                <li>
-                    <details className="dropdown">
-                        <summary>Account</summary>
-                        <ul dir="rtl">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">Loggout</a></li>
-                        </ul>
-                    </details>
-                </li>
-            </ul>
-        </nav>
-    )
+        <header className="bg-gray-900 text-white shadow-md">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                <Navbar />
+            </div>
+        </header>
+    );
 }
 
 export default Header;
