@@ -38,15 +38,15 @@ const GenresDropdown = () => {
     };
 
     return (
-        <div className="w-full max-w-xs mb-4">
-            <label htmlFor="genres" className="block text-sm font-medium text-gray-700 mb-1">
+        <div className="mb-6">
+            <label htmlFor="genres" className="block text-sm font-semibold text-gray-300 mb-2">
                 Filtra per Genere
             </label>
             <select
                 id="genres"
                 name="genres"
                 onChange={handleChange}
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-xl shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
+                className="w-full px-4 py-2 bg-gray-700 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
             >
                 <option value="">Tutti i generi</option>
                 {genres.map((genre) => (
@@ -56,7 +56,7 @@ const GenresDropdown = () => {
                 ))}
             </select>
             {error && (
-                <p className="text-sm text-red-500 mt-1">Errore: {error}</p>
+                <p className="text-xs text-red-400 mt-2">Errore: {error}</p>
             )}
         </div>
     );

@@ -3,6 +3,7 @@ import CardGame from "../../components/CardGame";
 import GameModal from "../../components/GameModal";
 import useApiKey from "../../hooks/useApiKey";
 import useFetchSolution from "../../hooks/useFetchSolution";
+import GameCarousel from "../../components/GameCarousel";
 
 const apiKey = useApiKey();
 
@@ -14,6 +15,10 @@ function Homepage() {
 
     return (
         <div className="p-4">
+            {data && data.results && (
+                <GameCarousel games={data.results.slice(0, 5)} />
+            )}
+
             <h1 className="text-3xl font-bold text-white mb-6">Homepage</h1>
 
             {loading && <p className="text-gray-400">Loading...</p>}
