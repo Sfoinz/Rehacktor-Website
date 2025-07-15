@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router";
 import supabase from "../supabase/supabase-client";
 import NavButton from "./buttons/NavButton";
 import FormButton from "./buttons/FormButton";
 import logo from "../assets/rehacktor-Logo.svg";
 import Searchbar from "./Searchbar";
+import SessionContext from "../context/SessionContext";
 
-export default function Navbar({ session }) {
+export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+    const [avatarUrl, setAvatarUrl] = useState(null);
+
+    const { session } = useContext(SessionContext);
+    const user = session?.user;
+
+
+
+    useEffect(() => {
+        const loadAvatar = async (path) => {
+            try {
+                const { data, error } = await supabase.storage.from('avatars').download(path)
+                if (error) throw error
+                const url = URL.createObjectURL(data)
+                setAvatarUrl(url)
+            } catch (error) {
+                console.log('Error downloading image: ', error.message)
+            }
+        }
+
+        if (user?.user_metadata?.avatar_url) {
+            loadAvatar(user.user_metadata.avatar_url)
+        } else {
+            const initialsUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.user_metadata?.username || "User")}`
+            setAvatarUrl(initialsUrl)
+        }
+    }, [user])
 
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
@@ -16,14 +43,10 @@ export default function Navbar({ session }) {
         else console.log("Signed out 👋");
     };
 
-    const user = session?.user;
-    const avatarUrl =
-        user?.user_metadata?.avatar_url ||
-        `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.user_metadata?.username || "User")}`;
-
     return (
         <nav className="bg-gray-900 shadow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
+
                 <Link to="/" className="flex items-center space-x-2">
                     <img src={logo} alt="Rehacktor Logo" className="w-8 h-8" />
                     <span className="hidden lg:inline text-xl font-extrabold text-white tracking-wide">
@@ -31,9 +54,11 @@ export default function Navbar({ session }) {
                     </span>
                 </Link>
 
+
                 <div className="hidden sm:block w-full max-w-md px-4">
                     <Searchbar />
                 </div>
+
 
                 <div className="hidden sm:flex items-center space-x-4">
                     {session ? (
@@ -110,12 +135,18 @@ export default function Navbar({ session }) {
                     )}
                 </div>
 
-                <div className="sm:hidden">
+
+                <div className="sm:hidden flex items-center space-x-3">
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="text-gray-300 focus:outline-none text-2xl"
                     >
-                        ☰
+                        <img
+                            src={avatarUrl}
+                            alt="User Avatar"
+                            className="w-8 h-8 rounded-full border-2 border-pink-500 object-cover"
+                            onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                        />
                     </button>
                 </div>
             </div>

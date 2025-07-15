@@ -4,6 +4,7 @@ import GamePage from "../pages/gamepage";
 import SearchPage from "../pages/searchpage";
 import ServicesPage from "../pages/servicespage";
 import ProfilePage from "../pages/profilepage";
+import AccountPage from "../pages/accountpage";
 
 
 import Homepage from "../pages/homepage";
@@ -25,6 +26,7 @@ function Routing() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/account" element={<AccountPage />} />
                 <Route path="/login" element={<LoginPage />} />
             </Route>
         </Routes>

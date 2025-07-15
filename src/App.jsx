@@ -1,11 +1,16 @@
 import './App.css'
-import './styles/glass-button.css' // cambia il path in base alla tua struttura
+import './styles/glass-button.css'
+import SessionProvider from './context/SessionProvider';
 
 import Routing from "./routes/Routing";
 
 function App() {
 
-  return <Routing /> 
+  return (
+    <SessionProvider>
+      <Routing />
+    </SessionProvider>
+  )
 
 }
 
