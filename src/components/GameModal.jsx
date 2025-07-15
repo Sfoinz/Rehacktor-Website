@@ -44,7 +44,7 @@ export default function GameModal({ game, onClose }) {
                 to={`/games/${game.slug}/${game.id}`}
                 className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg transition inline-block"
               >
-                Gioca
+                Scopri
               </Link>
             </div>
           </div>
