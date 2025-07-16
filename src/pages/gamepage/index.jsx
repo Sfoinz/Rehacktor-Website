@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import useFetchSolution from "../../hooks/useFetchSolution";
 import SessionContext from "../../context/SessionContext";
 import ToggleFavorite from "../../components/ToggleFavorite";
+import Chatbox from "../../components/Chatbox";
 
 export default function GamePage() {
     const apiKey = useApiKey();
@@ -51,6 +52,10 @@ export default function GamePage() {
                         <p className="text-gray-300 text-sm leading-relaxed mb-4">
                             {data.description_raw}
                         </p>
+
+                        <div className="style-chatbox">
+                            <Chatbox data={data} />
+                        </div>
                     </div>
                 </div>
             )}
